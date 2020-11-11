@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* css reset */
+* {
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+
+}
+
+/* css variables */
+:root {
+    --font: 'Poppins', sans-serif;
+    --color: #111;
+}
+
+/* global page props */
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color);
+    font-family: var(--font);
+}
+
+/* slideshow */
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font);
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    padding: 2%;
+}
+
+/* slides */
+.slides {
+    /* display props [ flex ] */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-height: 600px;
+    max-width: 350px;
+    
+    /* position props [ relative ] */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    
+
+    /* element props */
+    border-radius: 12px;
+    transform-style: preserve-3d;
+
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    /* dev */
+    /* border: 2px dotted red; */
+    
+}
+/*
+    [ card component ]
+        1. card - parent container
+        2. face - 3d content placement
+        3. face : front, face : back - card faces
+        4. box : small - display image
+
+*/
+.card {
+    /* position props */
+    position: relative;
+    height: 100%;
+    width: 100%;
+    /* element styles */
+    max-height: 600px;
+    max-width: 300px;
+    /* 3D transform props */
+    transform-style: preserve-3d;
+}
+.card .face {
+    /* position props [ absolute ] */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+    /* display props [ flex ] */
+    display :flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    /* element styles */
+    transition: 1s ease-in-out;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    border-radius: 0 0 12px 12px;
+
+    /* mozilla & edge browser support */
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+}
+.card .face.front,
+.card .face.back {
+    /* element styles */
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+    /* #D transform props */
+    transform-style: preserve-3d;
+    transition-delay: 100ms;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.card .face.front {
+    background: transparent;
+}
+.card .face.back {
+    /* display props [ flex ] */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    /* element styles */
+    color: #FFF;
+    background: #000;
+    border-radius: 12px;
+    background-image: url('img.PNG');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    /* 3D transform props */
+    transform: perspective(500px) rotateY(180deg);
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+}
+
+/* card [ face : front ] element containers */
+.card .face .box,
+.card .face .info,
+.card .face .bk {
+    /* 3D transform props */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.card .bk {
+    /* display props [ flex ] ( container = 25% ) */
+    width: 100%;
+    height: 100%;
+    flex: 25%;
+    background-image: url('img.PNG');
+    border-radius: 12px 12px 0 0;
+}
+.card .info {
+    /* display props [ flex ] ( container = 75% ) */
+    display: flex;
+    flex: 75%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    
+    /* element styles */
+    text-align: center;
+    padding: 4%;
+    background: #FFF;
+    border-radius: 0 0 12px 12px;
+}
+.card .box {
+    /* position props [ absolute ] */
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -25%);
+    z-index: 2;
+    height: 180px;
+    width: 180px;
+
+    /* display props [ flex ] */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* element styles */
+    border-radius: 50%;
+    border: 14px solid #FFF;
+
+    /* 3d transform props */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+}
+
+/* box image [ small ] */
+.box .small {
+    /* element styles */
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    
+    /* 3d transform props */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+}
+/* card back [ button ] */
+.card button {
+    /* element styles */
+    background: white;
+    border: 2px solid #FFF;
+    border-radius: 10px;
+    color: green;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 22%;
+    min-width: 135px;
+    padding: 2% 10%;
+    text-transform: capitalize;
+
+    /* 3d transform props */
+    transform: translateZ(50px);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+}
+
+/* card [ info ] elements ] : project description */
+.card .title {
+    /* element styles */
+    font-size: 2.6em;
+    padding: 2%;
+    text-transform: uppercase;
+    transform-style: preserve-3d;
+    transform: perspective(500px) translateZ(50px);
+    transition: 0.3s ease-in;
+    
+    /* browser support */
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.card .tag {
+    /* element styles */
+    padding: 0 2% 2% 2%;
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    text-transform: capitalize;
+
+    /* 3D transform props */
+    transform-style: preserve-3d;
+    transform: perspective(500px) translateZ(50px);
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.card .desc {
+    /* element styles */
+    padding: 5% 5% 22% 5%;
+
+    /* 3D transform props */
+    transform-style: preserve-3d;
+    transform: perspective(500px);
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
